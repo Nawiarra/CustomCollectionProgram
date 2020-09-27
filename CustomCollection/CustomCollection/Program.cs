@@ -19,6 +19,9 @@ namespace CustomCollection
 
             int [] array = TestList.ToArray();
 
+            string result = TestList.ToString();
+            Console.WriteLine(result);
+
             Console.ReadLine();
 
         }

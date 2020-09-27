@@ -52,6 +52,27 @@ namespace CollectionCore
             Size++;
         }
 
+        public override string ToString()
+        {
+            string result="";
+            Node<T> copyOfHeadNode = head;
+
+            while (copyOfHeadNode != null)
+            {
+                result += copyOfHeadNode.Value.ToString()+'\n';
+                copyOfHeadNode = copyOfHeadNode.NextValue;
+            }
+            return result;
+
+        }
+        public void DeleteItem(T item)
+        {
+            if(head!=null)
+            {
+
+            }
+        }
+
         private void ResizeArray()
         {
             Array.Resize<T>(ref ListArray, arraySize * 2);
@@ -75,6 +96,7 @@ namespace CollectionCore
             {
                 ListArray[index] = copyOfHeadNode.Value;
                 copyOfHeadNode = copyOfHeadNode.NextValue;
+
                 index++;
             }
             return ListArray;
