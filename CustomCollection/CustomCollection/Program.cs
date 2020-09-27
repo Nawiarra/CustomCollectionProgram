@@ -12,12 +12,22 @@ namespace CustomCollection
         static void Main(string[] args)
         {
             SinglyLinkedList<int> TestList = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> TestList2 = new SinglyLinkedList<int>();
 
             TestList.AddItem(5);
             TestList.AddItem(6);
             TestList.AddItem(7);
 
+            for (int i = 0; i < 10; i++)
+            {
+                TestList2.AddItem(i);
+            }
+
+            SinglyLinkedList<int> TestList3 = TestList2.Except(TestList);
+
             int A = TestList[1];
+
+            TestList[2] = 10;
 
             TestList.DeleteItem(6);
 

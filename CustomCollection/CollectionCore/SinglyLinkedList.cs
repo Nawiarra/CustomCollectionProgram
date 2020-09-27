@@ -124,14 +124,68 @@ namespace CollectionCore
         {
             get
             {
+                if (index > Size)
+                    return default(T);
+
                 int curIndex = 0;
+                Node<T> copyOfHeadNode = head;
+
                 while (curIndex != index)
                 {
-                    head = head.NextValue;
+                    copyOfHeadNode = copyOfHeadNode.NextValue;
                     curIndex++;
                 }
-                return head.Value;
+                return copyOfHeadNode.Value;
             }
+            set
+            {
+                if (index > Size)
+                    return;
+
+                int curIndex = 0;
+                Node<T> copyOfHeadNode = head;
+
+                while (curIndex != index)
+                {
+                    copyOfHeadNode = copyOfHeadNode.NextValue;
+                    curIndex++;
+                }
+                copyOfHeadNode.Value = value;
+            }
+        }
+
+        public SinglyLinkedList<T> Except(SinglyLinkedList<T> secondList)
+        {
+            Node<T> copyOfHeadNode = head;
+
+            SinglyLinkedList<T> resultList = new SinglyLinkedList<T>();
+
+            bool isntInCustList = false;
+
+            while (copyOfHeadNode != null)
+            {
+                foreach (T item in secondList)
+                {
+                    if(copyOfHeadNode.Value.Equals(item))
+                    {
+                        isntInCustList = true;
+                        break;
+                    }
+                }
+
+                if (isntInCustList)
+                {
+                    isntInCustList = false;
+                }
+                else
+                {
+                    resultList.AddItem(copyOfHeadNode.Value);
+                }
+
+                copyOfHeadNode = copyOfHeadNode.NextValue;
+            }
+
+            return resultList;
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
