@@ -17,7 +17,12 @@ namespace CustomCollection
             TestList.AddItem(6);
             TestList.AddItem(7);
 
+            int A = TestList[1];
+
+            TestList.DeleteItem(6);
+
             int [] array = TestList.ToArray();
+
 
             string result = TestList.ToString();
             Console.WriteLine(result);

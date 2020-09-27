@@ -54,12 +54,12 @@ namespace CollectionCore
 
         public override string ToString()
         {
-            string result="";
+            string result = "";
             Node<T> copyOfHeadNode = head;
 
             while (copyOfHeadNode != null)
             {
-                result += copyOfHeadNode.Value.ToString()+'\n';
+                result += copyOfHeadNode.Value.ToString() + '\n';
                 copyOfHeadNode = copyOfHeadNode.NextValue;
             }
             return result;
@@ -67,9 +67,27 @@ namespace CollectionCore
         }
         public void DeleteItem(T item)
         {
-            if(head!=null)
-            {
+            Node<T> copyOfHeadNode = head;
+            Node<T> previousValue = null;
 
+            while (copyOfHeadNode != null)
+            {
+                if (head.NextValue == null)
+                {
+                    head = null;
+                }
+                if (copyOfHeadNode.Value.Equals(item))
+                {
+                    if (previousValue != null)
+                    {
+                        previousValue.NextValue = copyOfHeadNode.NextValue;
+                    }
+
+                    Size--;
+                }
+
+                previousValue = copyOfHeadNode;
+                copyOfHeadNode = copyOfHeadNode.NextValue;
             }
         }
 
@@ -102,7 +120,7 @@ namespace CollectionCore
             return ListArray;
         }
 
-        public Node<T> this[int index]
+        public T this[int index]
         {
             get
             {
@@ -112,9 +130,8 @@ namespace CollectionCore
                     head = head.NextValue;
                     curIndex++;
                 }
-                return head;
+                return head.Value;
             }
-            set { }
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
