@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CollectionCore;
 
 namespace CustomCollection
 {
@@ -10,6 +11,16 @@ namespace CustomCollection
     {
         static void Main(string[] args)
         {
+            SinglyLinkedList<int> TestList = new SinglyLinkedList<int>();
+
+            TestList.AddItem(5);
+            TestList.AddItem(6);
+            TestList.AddItem(7);
+
+            int [] array = TestList.ToArray();
+
+            Console.ReadLine();
+
         }
     }
 }

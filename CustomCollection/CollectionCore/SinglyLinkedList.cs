@@ -11,34 +11,45 @@ namespace CollectionCore
     {
         Node<T> head;
 
+        private int size;
+        private static int arraySize = 2;
+
         private T[] ListArray = new T[arraySize];
 
-
-        private int size;
-        private int arraySize = 50;
         public int Size
         {
             get
             {
                 return size;
             }
+            private set { size = value; }
         }
 
         public void AddItem(T item)
         {
+
             if (head == null)
             {
+                head = new Node<T>();
+
                 head.Value = item;
-                head.NextValue = null;
             }
             else
             {
-                while (head.NextValue.Value != null)
+                Node<T> copyOfHeadNode = head;
+
+                while (copyOfHeadNode.NextValue != null)
                 {
-                    head = head.NextValue;
+                    copyOfHeadNode = copyOfHeadNode.NextValue;
                 }
-                head.NextValue.Value = item;
+
+                copyOfHeadNode.NextValue = new Node<T>();
+
+                copyOfHeadNode.NextValue.Value = item;
+
             }
+
+            Size++;
         }
 
         private void ResizeArray()
@@ -50,16 +61,21 @@ namespace CollectionCore
 
         public T[] ToArray()
         {
+
+            int index = 0;
+            Node<T> copyOfHeadNode = head;
+
             if (size > arraySize)
             {
                 ResizeArray();
             }
 
-            int index = 0;
-            while (head.NextValue.Value != null)
+
+            while (copyOfHeadNode != null)
             {
-                ListArray[index] = head.Value;
-                head = head.NextValue;
+                ListArray[index] = copyOfHeadNode.Value;
+                copyOfHeadNode = copyOfHeadNode.NextValue;
+                index++;
             }
             return ListArray;
         }
