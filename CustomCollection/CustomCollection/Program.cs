@@ -17,13 +17,14 @@ namespace CustomCollection
             TestList.AddItem(5);
             TestList.AddItem(6);
             TestList.AddItem(7);
+            TestList.AddItem(71);
 
             for (int i = 0; i < 10; i++)
             {
                 TestList2.AddItem(i);
             }
 
-            SinglyLinkedList<int> TestList3 = TestList2.Except(TestList);
+            TestList2.Except(TestList);
 
             int A = TestList[1];
 

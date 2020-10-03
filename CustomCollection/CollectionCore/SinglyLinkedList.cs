@@ -154,7 +154,7 @@ namespace CollectionCore
             }
         }
 
-        public SinglyLinkedList<T> Except(SinglyLinkedList<T> secondList)
+        public void Except(SinglyLinkedList<T> secondList)
         {
             Node<T> copyOfHeadNode = head;
 
@@ -176,16 +176,20 @@ namespace CollectionCore
                 if (isntInCustList)
                 {
                     isntInCustList = false;
+                    if (this.Contains(copyOfHeadNode.Value))
+                    {
+                        DeleteItem(copyOfHeadNode.Value);
+                    }
                 }
-                else
-                {
-                    resultList.AddItem(copyOfHeadNode.Value);
-                }
+//else
+               // {
+              //      resultList.AddItem(copyOfHeadNode.Value);
+              //  }
 
                 copyOfHeadNode = copyOfHeadNode.NextValue;
             }
 
-            return resultList;
+           // return resultList;
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
