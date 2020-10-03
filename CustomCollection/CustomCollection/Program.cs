@@ -24,7 +24,7 @@ namespace CustomCollection
                 TestList2.AddItem(i);
             }
 
-            TestList2.Except(TestList);
+            TestList2.Except(TestList); 
 
             int A = TestList[1];
 
